@@ -47,7 +47,7 @@ class AccessTicketProcessorFactory
 
                 $conf['auth_cert_path'],
                 $conf['auth_key_path'],
-                $conf['auth_passprhase']
+                $conf['auth_passphrase']
 
 
                 ),

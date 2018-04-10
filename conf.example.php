@@ -3,7 +3,7 @@
 return array(
 
     'tax_id'             => 'xxxxxxxxxxx',
-    'auth_passprhase'    => 'xxxxxxxxxxx',
+    'auth_passphrase'    => 'xxxxxxxxxxx',
     'auth_wsdl'          => 'https://wsaahomo.afip.gov.ar/ws/services/LoginCms?wsdl',
     'auth_end_point'     => 'https://wsaahomo.afip.gov.ar/ws/services/LoginCms',
     'auth_cert_path'     =>  __DIR__ . '/Resources/cert.pem',

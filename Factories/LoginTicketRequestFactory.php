@@ -18,7 +18,7 @@ class LoginTicketRequestFactory
  
         $auth_cert_path,
                                    $auth_key_path,
-                                   $auth_passprhase,
+                                   $auth_passphrase,
                                    FileManager $file_manager = null,
                                    LoginTicketRequestSigner $signer = null
  
@@ -31,7 +31,7 @@ class LoginTicketRequestFactory
                 new OpensslManager(),
                 $auth_cert_path,
                 $auth_key_path,
-                $auth_passprhase
+                $auth_passphrase
             )
         );
     }

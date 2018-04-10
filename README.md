@@ -8,7 +8,7 @@
 return array(
 
     'tax_id'             => 'xxxxxxxxxx', //cuit de la empresa emisora
-    'auth_passprhase'    => 'xxxxxxxxxx', //pass para firmar el certificado a enviar. Opcional
+    'auth_passphrase'    => 'xxxxxxxxxx', //pass para firmar el certificado a enviar. Opcional
     'auth_wsdl'          => 'https://wsaahomo.afip.gov.ar/ws/services/LoginCms?wsdl', //si es local pasar ruta absoluta
     'auth_end_point'     => 'https://wsaahomo.afip.gov.ar/ws/services/LoginCms',
     'auth_cert_path'     =>  __DIR__ . '/Resources/cert.pem', //certificado que la lib firma para enviar a api afip y autenticar
