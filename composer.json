@@ -1,6 +1,6 @@
 {
-    "name": "nan-apps/AfipClient",
-    "description": "Clases para interactuar con api de Afip",
+    "name": "libasoles/afip-wsfev1-client",
+    "description": "Clases para interactuar con api wsfev1 de Afip",
     "type": "library",
     "require": {
         
