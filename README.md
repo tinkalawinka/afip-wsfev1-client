@@ -1,4 +1,6 @@
-# Librería para consumir el servicio wsfev1 de AFIP
+# Librería PHP para generar facturas electrónicas
+
+## El servicio wsfev1 de AFIP
 
 Todos los webservices de AFIP necesitan pasar por un primer círculo de autenticación (WSAA), y operar con el token (TA) que devuelve el servicio WSAA. Esta librería resuelve la autenticación y luego el diálogo con el servicio `wsfev1`.
 
