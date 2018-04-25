@@ -40,7 +40,7 @@ class BillerResponseManager
             'inv_type' => $inv_type,
             'invoice_date' => date_create_from_format('Ymd', $invoice_date),
             'tax_id' => $tax_id,
-            'full_response' => ACHelper::export_response($response)
+            'full_response' => (array) json_decode(json_encode($response), true)
         ];
     }
 
