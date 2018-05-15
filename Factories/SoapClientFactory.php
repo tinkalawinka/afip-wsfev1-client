@@ -1,8 +1,6 @@
 <?php
 namespace AfipClient\Factories;
 
-use AfipClient\ACHelper;
-
 class SoapClientFactory
 {
 
@@ -12,16 +10,17 @@ class SoapClientFactory
      * @param string $end_point
      * @return SoapClient
      */
-    public static function create($wsdl, $end_point)
+    public static function create($wsdl, $end_point, $soap_version = 'SOAP_1_2')
     {
         return new \SoapClient(
         
             $wsdl,
                 [
-                    'soap_version'   => SOAP_1_2,
-                    'location'       => $end_point,
+                    'soap_version'  => $soap_version,
+                    'location'      => $end_point,
+                    'exceptions'    => 0,
+                    'trace'         => 1
                 ]
-        
         );
     }
 }
