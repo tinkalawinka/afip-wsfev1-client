@@ -18,7 +18,7 @@ class SoapClientFactory
                 [
                     'soap_version'  => $soap_version,
                     'location'      => $end_point,
-                    'exceptions'    => 0,
+                    'exceptions'    => 1,
                     'trace'         => 1
                 ]
         );
