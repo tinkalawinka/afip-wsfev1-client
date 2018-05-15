@@ -50,7 +50,7 @@ class FileManager
      */
     public function getTempFolderPath($file_name = null, $file_check = false)
     {
-        $path = sys_get_temp_dir() . '/';
+        $path = (!empty(ini_get('upload_tmp_dir')) ? ini_get('upload_tmp_dir') : sys_get_temp_dir()) . '/';
 
         if ($file_name) {
             $path .= $file_name;
@@ -78,7 +78,7 @@ class FileManager
     public function tempFolderPermissionsCheck()
     {
         if (!is_writable($this->getTempFolderPath())) {
-            throw new ACException("La carpeta Temp debe tener permisos de escritura");
+            throw new ACException("La carpeta {$this->getTempFolderPath()} debe tener permisos de escritura");
         };
     }
 
@@ -126,7 +126,9 @@ class FileManager
      */
     public function putContent($file_path, $content)
     {
-        return file_put_contents($file_path, $content);
+        if($result = file_put_contents($file_path, $content))
+            chmod($file_path, 0775);
+        return $result;
     }
 
     /**

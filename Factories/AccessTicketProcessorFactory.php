@@ -43,17 +43,12 @@ class AccessTicketProcessorFactory
             $access_ticket_loader ? $access_ticket_loader : new AccessTicketLoader(),
 
             $login_ticket_request ? $login_ticket_request : LoginTicketRequestFactory::create(
-
-
                 $conf['auth_cert_path'],
                 $conf['auth_key_path'],
                 $conf['auth_passphrase']
-
-
-                ),
+            ),
 
             $login_ticket_response ? $login_ticket_response : new LoginTicketResponse()
-
         );
     }
 }

@@ -37,14 +37,16 @@ class BillerClient extends Client
         $this->request_manager = $request_manager;
         $this->response_manager = $response_manager;
     }
-
         
     /**
      * Solicitar cae y fecha de vencimiento al WS de facturacion
      * @param array $data
-     * @return array [ string 'cae' => '',  \DateTime 'cae_validdate' => null,
-     *                 int 'invoice_number' => 0, string 'tax_id' => '', \DateTime 'invoice_date' => null
-     * 				   stdClass 'full_response' => null ]
+     * @return array [  string 'cae' => '',  
+     *                  \DateTime 'cae_validdate' => null,
+     *                  int 'invoice_number' => 0, 
+     *                  string 'tax_id' => '', 
+     *                  \DateTime 'invoice_date' => null
+     *                  stdClass 'full_response' => null ]
      * @throws  ACException
      */
     public function requestCAE($data)
@@ -128,4 +130,10 @@ class BillerClient extends Client
     {
         return $this->auth_params_provider->getAuthParams($this);
     }
+    
+    public function getClientName()
+    {
+        return "{$this->client_name}";
+    }
+
 }

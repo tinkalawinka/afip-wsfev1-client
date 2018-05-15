@@ -23,7 +23,6 @@ class AccessTicketProcessor implements AuthParamsProvider
     private $loader;
     private $login_ticket_request;
     private $login_ticket_response;
-    private $service_client;
 
     public function __construct(
                                   AuthClient $auth_client,
@@ -65,7 +64,7 @@ class AccessTicketProcessor implements AuthParamsProvider
      */
     private function _processAccessTicket(Client $service_client)
     {
-        $at_name = "{$service_client->getClientName()}_{$this->access_ticket->getTaxId()}";
+        $at_name = $service_client->getClientName(); 
 
         if ($this->access_ticket->isEmpty()) {
             $this->loader->loadFromStorage($at_name, $this->store, $this->access_ticket);
