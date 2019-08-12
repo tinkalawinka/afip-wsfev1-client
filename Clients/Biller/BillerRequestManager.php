@@ -9,7 +9,6 @@ use AfipClient\Clients\Biller\BillerClient;
  */
 class BillerRequestManager
 {
-
     /**
      * Armar el array para ser enviado al cliente y solicitar el cae
      * @param BillerClient $biller_client
@@ -56,7 +55,8 @@ class BillerRequestManager
                                     'FchVtoPago' => $data['FchVtoPago'] ?? null,
                                     'MonId' => $data['MonId'],
                                     'MonCotiz' => $data['MonCotiz'],
-                                    'Iva' => $data['Iva'] ?? null
+                                    'Iva' => $data['Iva'] ?? null,
+                                    'Opcionales' => $data['Opcionales'] ?? null,
                                 ],
                             ],
                         ],

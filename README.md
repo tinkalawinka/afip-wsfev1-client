@@ -151,7 +151,7 @@ return [
 ### Parametros
 
 ```php
-$params = array(
+$params = [
     'Cuit' => preg_replace('/[^0-9]+/', '', config('afip.tax_id')), // cuit contribuyente
     'CantReg' => 1,
     'PtoVta' => config('afip.biller_sale_point'), 
@@ -178,7 +178,7 @@ $params = array(
     'ImpTotal' => $total_amount_in_pesos, 
     'MonId' => 'PES', // Argentine Pesos
     'MonCotiz' => 1, // 1  
-);
+];
 ```
 
 Nota: para Tributos hay que agregar los datos al igual que con el Iva, y luego agregar el parametro en la librería (no esta desarrollado actualmente pero es algo facil de agregar)
@@ -208,6 +208,45 @@ public function store(Request $request)
     
     // ...
 }
+```
+
+Para *Opcionales*, siendo que se compone de varias items llamados *Opcional*, y ue un json no acepta keys duplicadas, la sintaxis es así:
+```php
+$params = [
+  // todo lo anterior y luego:
+  'Opcionales' => [
+    'Opcional' => [
+        [
+            'Id' => '2101',
+            'Valor' => 'un_valor',
+        ], [
+            'Id' => '2102',
+            'Valor' => 'un_valor',
+        ], [
+            'Id' => '23',
+            'Valor' => 'un_valor',
+        ]
+    ]
+  ]
+];
+```
+
+Eso va a generar el xml correctamente:
+```xml
+<ns1:Opcionales>
+    <ns1:Opcional>
+        <ns1:Id>2101</ns1:Id>
+        <ns1:Valor>un_valor</ns1:Valor>
+    </ns1:Opcional>
+    <ns1:Opcional>
+        <ns1:Id>2102</ns1:Id>
+        <ns1:Valor>un_valor</ns1:Valor>
+    </ns1:Opcional>
+    <ns1:Opcional>
+        <ns1:Id>23</ns1:Id>
+        <ns1:Valor>un_valor</ns1:Valor>
+    </ns1:Opcional>
+</ns1:Opcionales>
 ```
 
 --------------------------------------------------------------------------
