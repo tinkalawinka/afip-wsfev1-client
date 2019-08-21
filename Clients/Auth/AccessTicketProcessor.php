@@ -23,6 +23,7 @@ class AccessTicketProcessor implements AuthParamsProvider
     private $loader;
     private $login_ticket_request;
     private $login_ticket_response;
+    private $should_cache_access_ticket;
 
     public function __construct(
                                   AuthClient $auth_client,
@@ -30,7 +31,8 @@ class AccessTicketProcessor implements AuthParamsProvider
                                   AccessTicketStore $store,
                                   AccessTicketLoader $loader,
                                   LoginTicketRequest $login_ticket_request,
-                                  LoginTicketResponse $login_ticket_response
+                                  LoginTicketResponse $login_ticket_response,
+                                  bool $should_cache_access_ticket
     ) {
         $this->auth_client = $auth_client;
         $this->access_ticket = $access_ticket;
@@ -38,6 +40,7 @@ class AccessTicketProcessor implements AuthParamsProvider
         $this->loader = $loader;
         $this->login_ticket_request = $login_ticket_request;
         $this->login_ticket_response = $login_ticket_response;
+        $this->should_cache_access_ticket = $should_cache_access_ticket;
     }
 
     /**
@@ -64,6 +67,11 @@ class AccessTicketProcessor implements AuthParamsProvider
      */
     private function _processAccessTicket(Client $service_client)
     {
+        if(!$this->should_cache_access_ticket) {
+            $this->_createAccessTicket($service_client);
+            return;
+        }
+
         $at_name = $service_client->getClientName(); 
 
         if ($this->access_ticket->isEmpty()) {
@@ -72,20 +80,23 @@ class AccessTicketProcessor implements AuthParamsProvider
 
         if ($this->access_ticket->isExpired()) {
 
-            //obtengo el cms para requerimiento de acceso
-            $ltr_cms = $this->login_ticket_request->getCms($service_client);
-
-            //envio el cms al WS
-            $response = $this->auth_client->sendCms($ltr_cms);
-
-            //Extraigo de la respuesta el xml con los datos de acceso
-            $access_ticket_data = $this->login_ticket_response->getAccessTicketData($response);
-
-            //guardo datos en disco
+            $access_ticket_data = $this->_createAccessTicket($service_client);
             $this->store->saveDataToStorage($at_name, $access_ticket_data);
-
-            //cargo la data en el ticket
-            $this->loader->load($this->access_ticket, $access_ticket_data);
         }
+    }
+
+    private function _createAccessTicket(Client $service_client) {
+
+        //obtengo el cms para requerimiento de acceso
+        $ltr_cms = $this->login_ticket_request->getCms($service_client);
+
+        //envio el cms al WS
+        $response = $this->auth_client->sendCms($ltr_cms);
+
+        //Extraigo de la respuesta el xml con los datos de acceso
+        $access_ticket_data = $this->login_ticket_response->getAccessTicketData($response);
+
+        //cargo la data en el ticket
+        $this->loader->load($this->access_ticket, $access_ticket_data);
     }
 }

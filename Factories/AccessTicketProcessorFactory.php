@@ -30,7 +30,6 @@ class AccessTicketProcessorFactory
         AccessTicketLoader $access_ticket_loader = null,
         LoginTicketRequest $login_ticket_request = null,
         LoginTicketResponse $login_ticket_response = null
-
     ) {
         return new AccessTicketProcessor(
 
@@ -48,7 +47,9 @@ class AccessTicketProcessorFactory
                 $conf['auth_passphrase']
             ),
 
-            $login_ticket_response ? $login_ticket_response : new LoginTicketResponse()
+            $login_ticket_response ? $login_ticket_response : new LoginTicketResponse(),
+
+            $conf['should_cache_access_ticket'] ? $conf['should_cache_access_ticket'] : true
         );
     }
 }

@@ -248,6 +248,12 @@ Eso va a generar el xml correctamente:
     </ns1:Opcional>
 </ns1:Opcionales>
 ```
+## Consideraciones sobre WSAA
+El Ticket de Acceso devuelto por WSAA se cachea (con su token y sign). Las próximas llamadas se ejecutarán con ese token a menos que esté vencido (en tal caso, se renueva). 
+
+Si uno hiciera pruebas con las credenciales de test y luego las cambiara por las de prod, la _caché_ haría que la llamada a prod falle, porque el sign y token no coincidirían con el ambiente de prod.
+
+Para manejar este tipo de situaciones, se agregó la opción `should_cache_access_ticket` a la config que se pasa durante la instanciación de un servicio. 
 
 --------------------------------------------------------------------------
 **Manuales AFIP**
