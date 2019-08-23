@@ -9,8 +9,6 @@ use AfipClient\Clients\Auth\AccessTicketStore;
 use AfipClient\Clients\Auth\AccessTicketDiskStore;
 use AfipClient\Clients\Auth\LoginTicketRequest;
 use AfipClient\Clients\Auth\LoginTicketResponse;
-use AfipClient\Factories\LoginTicketRequestFactory;
-use AfipClient\Factories\AuthClientFactory;
 use AfipClient\Utils\FileManager;
 
 class AccessTicketProcessorFactory
@@ -19,7 +17,7 @@ class AccessTicketProcessorFactory
     /**
     * Crea un AccessTicketProcessor, el core de la lib
     * @param array $conf
-    * @return AccessTickerProcessor
+    * @return AccessTicketProcessor
     */
     public static function create(
 
@@ -49,7 +47,7 @@ class AccessTicketProcessorFactory
 
             $login_ticket_response ? $login_ticket_response : new LoginTicketResponse(),
 
-            $conf['should_cache_access_ticket'] ? $conf['should_cache_access_ticket'] : true
+            $conf['cache_filename_suffix'] ? $conf['cache_filename_suffix'] : ''
         );
     }
 }

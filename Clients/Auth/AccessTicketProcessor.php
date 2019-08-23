@@ -23,16 +23,16 @@ class AccessTicketProcessor implements AuthParamsProvider
     private $loader;
     private $login_ticket_request;
     private $login_ticket_response;
-    private $should_cache_access_ticket;
+    private $cache_filename_suffix;
 
     public function __construct(
-                                  AuthClient $auth_client,
-                                  AccessTicket $access_ticket,
-                                  AccessTicketStore $store,
-                                  AccessTicketLoader $loader,
-                                  LoginTicketRequest $login_ticket_request,
-                                  LoginTicketResponse $login_ticket_response,
-                                  bool $should_cache_access_ticket
+        AuthClient $auth_client,
+        AccessTicket $access_ticket,
+        AccessTicketStore $store,
+        AccessTicketLoader $loader,
+        LoginTicketRequest $login_ticket_request,
+        LoginTicketResponse $login_ticket_response,
+        bool $cache_filename_suffix
     ) {
         $this->auth_client = $auth_client;
         $this->access_ticket = $access_ticket;
@@ -40,7 +40,7 @@ class AccessTicketProcessor implements AuthParamsProvider
         $this->loader = $loader;
         $this->login_ticket_request = $login_ticket_request;
         $this->login_ticket_response = $login_ticket_response;
-        $this->should_cache_access_ticket = $should_cache_access_ticket;
+        $this->cache_filename_suffix = $cache_filename_suffix;
     }
 
     /**
@@ -67,12 +67,7 @@ class AccessTicketProcessor implements AuthParamsProvider
      */
     private function _processAccessTicket(Client $service_client)
     {
-        if(!$this->should_cache_access_ticket) {
-            $this->_createAccessTicket($service_client);
-            return;
-        }
-
-        $at_name = $service_client->getClientName(); 
+        $at_name = implode('_', [$service_client->getClientName(), $this->cache_filename_suffix]);
 
         if ($this->access_ticket->isEmpty()) {
             $this->loader->loadFromStorage($at_name, $this->store, $this->access_ticket);

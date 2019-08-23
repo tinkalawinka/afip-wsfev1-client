@@ -30,13 +30,13 @@ class PadronClient extends Client
                                  AuthParamsProvider $auth_params_provider,
                                  PadronRequestManager $request_manager,
                                  PadronResponseManager $response_manager,
-                                 string $nombre_ws
+                                 string $ws_name
     ) {
         $this->soap_client = $soap_client;
         $this->auth_params_provider = $auth_params_provider;
         $this->request_manager = $request_manager;
         $this->response_manager = $response_manager;
-        $this->client_name = $nombre_ws;
+        $this->client_name = $ws_name;
     }
     
     public function getPersona($data = [])

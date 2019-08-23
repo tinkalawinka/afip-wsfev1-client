@@ -16,7 +16,7 @@ class PadronClientFactory
      * @param array $conf
      * @param string $cert_file_name nombre del archivo del certificado obtenido de afip
      * @param string $key_file_name nombre del archivo de la clave que se uso para firmar
-     * @param string $nombre_ws keyname del WS. Por ejemplo, 'ws_sr_padron_a5' para Acceso 5.
+     * @param string $ws_name keyname del WS. Por ejemplo, 'ws_sr_padron_a5' para Acceso 5.
      * @return PadronClient
      */
     public static function create(
@@ -25,7 +25,7 @@ class PadronClientFactory
         AuthParamsProvider $auth_params_provider = null, 
         PadronRequestManager $request_manager = null, 
         PadronResponseManager $response_manager = null,
-        string $nombre_ws = 'ws_sr_padron_a5'
+        $ws_name = 'ws_sr_padron_a5'
     )
     {
         return new PadronClient(
@@ -37,7 +37,7 @@ class PadronClientFactory
             $auth_params_provider ? $auth_params_provider : AccessTicketProcessorFactory::create($conf), 
             $request_manager ?: new PadronRequestManager(), 
             $response_manager ?: new PadronResponseManager(),
-            $nombre_ws
+            $ws_name
         );
     }
 }

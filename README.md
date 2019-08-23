@@ -253,7 +253,7 @@ El Ticket de Acceso devuelto por WSAA se cachea (con su token y sign). Las próx
 
 Si uno hiciera pruebas con las credenciales de test y luego las cambiara por las de prod, la _caché_ haría que la llamada a prod falle, porque el sign y token no coincidirían con el ambiente de prod.
 
-Para manejar este tipo de situaciones, se agregó la opción `should_cache_access_ticket` a la config que se pasa durante la instanciación de un servicio. 
+Para manejar este tipo de situaciones, se agregó la opción `cache_filename_suffix` a la config que se pasa durante la instanciación de un servicio, que debería recibir valores como 'test' o 'prod'. 
 
 --------------------------------------------------------------------------
 **Manuales AFIP**
