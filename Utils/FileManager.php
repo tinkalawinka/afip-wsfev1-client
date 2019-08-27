@@ -113,6 +113,8 @@ class FileManager
     {
         if (!file_exists($file_path)) {
             throw new ACException("{$file_name} inexistente en {$file_path}");
+        } if (!filesize($file_path)) {
+            throw new ACException("{$file_name} está vacío");
         } else {
             return $file_path;
         }

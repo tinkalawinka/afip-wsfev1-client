@@ -93,5 +93,7 @@ class AccessTicketProcessor implements AuthParamsProvider
 
         //cargo la data en el ticket
         $this->loader->load($this->access_ticket, $access_ticket_data);
+
+        return $access_ticket_data;
     }
 }
