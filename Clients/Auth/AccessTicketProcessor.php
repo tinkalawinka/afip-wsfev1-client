@@ -32,7 +32,7 @@ class AccessTicketProcessor implements AuthParamsProvider
         AccessTicketLoader $loader,
         LoginTicketRequest $login_ticket_request,
         LoginTicketResponse $login_ticket_response,
-        bool $cache_filename_suffix
+        string $cache_filename_suffix
     ) {
         $this->auth_client = $auth_client;
         $this->access_ticket = $access_ticket;
