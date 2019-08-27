@@ -76,6 +76,9 @@ class AccessTicketProcessor implements AuthParamsProvider
         if ($this->access_ticket->isExpired()) {
 
             $access_ticket_data = $this->_createAccessTicket($service_client);
+
+            $this->loader->load($this->access_ticket, $access_ticket_data);
+
             $this->store->saveDataToStorage($at_name, $access_ticket_data);
         }
     }
@@ -90,9 +93,6 @@ class AccessTicketProcessor implements AuthParamsProvider
 
         //Extraigo de la respuesta el xml con los datos de acceso
         $access_ticket_data = $this->login_ticket_response->getAccessTicketData($response);
-
-        //cargo la data en el ticket
-        $this->loader->load($this->access_ticket, $access_ticket_data);
 
         return $access_ticket_data;
     }
