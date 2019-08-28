@@ -248,6 +248,25 @@ Eso va a generar el xml correctamente:
     </ns1:Opcional>
 </ns1:Opcionales>
 ```
+
+Para Comprobantes Asociados (en una Factura de Crédito) el caso es similar, y la estructura sería:
+```php
+$params = [
+  'CbtesAsoc' => [
+      'CbteAsoc' => [
+          [
+            'Tipo' => 202,
+            'PtoVta' => $invoice->sell_point,
+            'Nro' => $invoice->number,
+            'Cuit' => $self_cuit,
+            'CbteFch' => $invoice->created_at->format('Ymd')
+          ]
+      ]
+  ]    
+];
+```
+
+
 ## Consideraciones sobre WSAA
 El Ticket de Acceso devuelto por WSAA se cachea (con su token y sign). Las próximas llamadas se ejecutarán con ese token a menos que esté vencido (en tal caso, se renueva). 
 

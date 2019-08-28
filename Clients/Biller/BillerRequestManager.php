@@ -57,6 +57,7 @@ class BillerRequestManager
                                     'MonCotiz' => $data['MonCotiz'],
                                     'Iva' => $data['Iva'] ?? null,
                                     'Opcionales' => $data['Opcionales'] ?? null,
+                                    'CbtesAsoc' => $data['CbtesAsoc'] ?? null
                                 ],
                             ],
                         ],
