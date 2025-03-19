@@ -1,5 +1,5 @@
 {
-    "name": "libasoles/afip-wsfev1-client",
+    "name": "tinkalawinka/afip-wsfev1-client",
     "description": "Clases para interactuar con api wsfev1 de Afip",
     "type": "library",
     "require": {
