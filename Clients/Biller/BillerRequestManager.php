@@ -38,7 +38,7 @@ class BillerRequestManager
                         ],
                     'FeDetReq' =>
                         [ 'FECAEDetRequest' =>
-                            [        'Concepto' => $data['Concepto'],
+                            [       'Concepto' => $data['Concepto'],
                                     'DocTipo' => $data['DocTipo'],
                                     'DocNro' => $data['DocNro'],
                                     'CbteDesde' => $invoice_number,
@@ -57,7 +57,8 @@ class BillerRequestManager
                                     'MonCotiz' => $data['MonCotiz'],
                                     'Iva' => $data['Iva'] ?? null,
                                     'Opcionales' => $data['Opcionales'] ?? null,
-                                    'CbtesAsoc' => $data['CbtesAsoc'] ?? null
+                                    'CbtesAsoc' => $data['CbtesAsoc'] ?? null,
+                                    'CondicionIVAReceptorId' => $data['CondicionIVAReceptorId'] ?? null,
                                 ],
                             ],
                         ],
