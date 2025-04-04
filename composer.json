@@ -2,9 +2,6 @@
     "name": "tinkalawinka/afip-wsfev1-client",
     "description": "Clases para interactuar con api wsfev1 de Afip",
     "type": "library",
-    "require": {
-        
-    },
     "require-dev": {
         "mockery/mockery": "^0.9.9",
         "phpunit/phpunit": "^6.2"
@@ -18,5 +15,14 @@
     ],
     "autoload": {
         "psr-4": {"AfipClient\\": ""}
+    },
+    "repositories": [
+        {
+            "type": "vcs",
+            "url": "https://github.com/tinkalawinka/afip-wsfev1-client"
+        }
+    ],
+    "require": {
+        "tinkalawinka/afip-wsfev1-client": "master"
     }
 }
