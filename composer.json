@@ -17,7 +17,6 @@
         "psr-4": {"AfipClient\\": ""}
     },
     "require": {
-        "tinkalawinka/afip-wsfev1-client": "master"
     },
     "repositories": [
         {
