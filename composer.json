@@ -16,13 +16,13 @@
     "autoload": {
         "psr-4": {"AfipClient\\": ""}
     },
+    "require": {
+        "tinkalawinka/afip-wsfev1-client": "master"
+    },
     "repositories": [
         {
             "type": "vcs",
             "url": "https://github.com/tinkalawinka/afip-wsfev1-client"
         }
-    ],
-    "require": {
-        "tinkalawinka/afip-wsfev1-client": "master"
-    }
+    ]
 }
