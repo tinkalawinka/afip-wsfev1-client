@@ -13,9 +13,7 @@
         "php": ">=7.0"
     },
     "autoload": {
-        "psr-4": {
-            "AfipClient\\": "src/"
-        }
+        "psr-4": {"AfipClient\\": ""}
     },
     "extra": {
         "branch-alias": {
